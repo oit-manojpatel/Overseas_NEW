@@ -1,0 +1,68 @@
+﻿@model Overseas.Manager.DB.emailSendingHistory
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+@using (Html.BeginForm("Create","Email", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.clientId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+
+                @Html.DropDownListFor(model => model.clientId, ViewBag.clientList as SelectList, "Select Client", htmlAttributes: new { @class = "form-control1" })
+                @Html.ValidationMessageFor(model => model.clientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emailDate, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.emailDate, string.Empty, htmlAttributes: new { @class = "form-control1", type = "date" })
+
+
+                @Html.ValidationMessageFor(model => model.emailDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emailType, htmlAttributes: new { @class = "control-label col-md-3"})
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.emailType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emailType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isResponded, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isResponded)
+                    @Html.ValidationMessageFor(model => model.isResponded, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isUnsubscribe, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isUnsubscribe)
+                    @Html.ValidationMessageFor(model => model.isUnsubscribe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="ADD Email" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

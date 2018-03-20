@@ -1,0 +1,170 @@
+﻿@model Overseas.Manager.DB.userMaster
+
+
+@using (Html.BeginForm("addUser", "UserManager", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">Add Your New User Below form...</div>
+        <div class="panel-body">
+
+            @Html.HiddenFor(model => model.userId)
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="radio" class="col-sm-4 control-label">
+                        @Html.LabelFor(model => model.gender)
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="radio block">
+                            <label>
+                                @Html.RadioButtonFor(model => model.gender, "Male", htmlAttributes: new { }) Male
+                            </label>
+                        </div>
+                        <div class="radio block">
+                            <label>
+                                @Html.RadioButtonFor(model => model.gender, "Female", htmlAttributes: new { }) Female
+                            </label>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.gender, "", htmlAttributes: new { @class = "alert-danger" })
+
+
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtarea1" class="col-sm-4 control-label">
+                        <label for="Country">
+                            Contry
+                        </label>
+                    </label>
+                    <div class="col-sm-8">
+                        <p class="help-block">
+                            @Html.DropDownListFor(model => model.countryId, ViewBag.countryId as SelectList, "Select a Country", htmlAttributes: new { id = "country", @class = "form-control1" })
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="txtarea1" class="col-sm-4 control-label">
+                        <label for="Country">State</label>
+                    </label>
+                    <div class="col-sm-8">
+                        <p class="help-block">
+                            <select class="form-control1" id="State" name="stateId"></select><br />
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contactNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.contactNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.contactNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.emailID, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.emailID, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.emailID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-4 control-label">
+                        @Html.LabelFor(model => model.password)
+                    </label>
+                    <div class="col-sm-8">
+                        @Html.PasswordFor(model => model.password, htmlAttributes: new { @class = "form-control1", id = "lastnameinput", placeholder = "Enter Password" })
+                        @*<input type="password" class="form-control1" id="lastnameinput" placeholder="Enter Password">*@
+                        @Html.ValidationMessageFor(model => model.password, "", htmlAttributes: new { @class = "alert-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.RoleId, ViewBag.rolelist as SelectList, "Select Role", htmlAttributes: new { @class = "form-control1" })
+                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+
+    $(function () {
+        $('#country').change(function () {
+            $.getJSON('/UserManager/StateList/' + $('#country').val(), function (data) {
+                var items = '<option>Select a State</option>';
+                $.each(data, function (i, state) {
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                });
+                $('#State').html(items);
+            });
+        });
+
+        $('#State').change(function () {
+            $.getJSON('/UserManager/Citylist/' + $('#State').val(), function (data) {
+                var items = '<option>Select a City</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#city').html(items);
+            });
+        });
+    });
+</script>

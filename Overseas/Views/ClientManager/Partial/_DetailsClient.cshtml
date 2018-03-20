@@ -1,0 +1,172 @@
+﻿@model Overseas.Manager.DB.clientMaster
+@using Overseas.Manager.Enum
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading text-center">Show your client details below...</div>
+    <div class="panel-body">
+        <div class="text-info fa-lg"></div>
+        <div class="container fa">
+            <dl class="dl-horizontal text-justify">
+                <dt>
+                    @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Enum.GetName(typeof(status), Convert.ToInt32(Model.status))
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.emailId, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.emailId) &nbsp; &nbsp;
+                    <a href="mailto:@Model.emailId">Send mail?</a>
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.companyName)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.ContactPersonName, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContactPersonName)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.ContactPersonDesignation, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContactPersonDesignation)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.contactPersonContactNo1, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.contactPersonContactNo1)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.contactPersonContactNo2, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+
+                    @if (Model.contactPersonContactNo2 == null)
+                    {
+                        <text><i class="fa fa-remove text-danger"> Alternet mobile number not available</i></text>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.contactPersonContactNo2)
+
+                    }
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.companyCellPhone, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @if (Model.companyCellPhone == null)
+                    {
+                        <text><i class="fa fa-remove text-danger"> Telephone number not available</i></text>
+                    }
+                    @Html.DisplayFor(model => model.companyCellPhone)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.address)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.city)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.stateId, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tblState.stateName)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.countryId, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tblCountry.countryName)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.isResponded, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.isResponded)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.isUnsubscribe, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.isUnsubscribe)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.domainMaster.domainName, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.domainMaster.domainName)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.userMaster.firstName)
+                    @Html.DisplayFor(model => model.userMaster.lastName)
+                </dd>
+                <dt>
+                    @Html.LabelFor(model => model.technology, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.technology)
+                </dd>
+
+                <dt>
+                    @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "text-info fa-lg" })
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.comment)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+

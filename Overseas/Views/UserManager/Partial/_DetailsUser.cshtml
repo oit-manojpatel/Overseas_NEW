@@ -1,0 +1,108 @@
+﻿@model Overseas.Manager.DB.userMaster
+
+<div>
+    <h4>userMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblState.stateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblState.stateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.countryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rememberMe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rememberMe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,181 @@
+﻿@model Overseas.Manager.DB.clientMaster
+
+<script src="~/Scripts/AppScript/ClientManager/Index.js"></script>
+@using (Html.BeginForm("addClient", "ClientManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">Add Your New Client Below form...</div>
+        <div class="panel-body">
+            @Html.HiddenFor(model => model.clientId)
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.userId)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.userId, ViewBag.UserList as SelectList, "Select User", htmlAttributes: new { @class = "form-control1" })
+                                @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.status)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.DropDownList("status", EnumHelper.GetSelectList(typeof(Overseas.Manager.Enum.status)), "select", htmlAttributes: new { @class = "form-control1" })
+                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.companyName)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.companyName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.ContactPersonDesignation)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.ContactPersonDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ContactPersonDesignation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.contactPersonContactNo2)</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.contactPersonContactNo2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.contactPersonContactNo2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.address)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.countryId)<span class="text-danger"> *</span></label>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.countryId, ViewBag.countryId as SelectList, "Select a Country", htmlAttributes: new { id="country", @class = "form-control1" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.stateId)<span class="text-danger"> *</span></label>
+                            <div class="col-sm-8">
+                                <select id="stateId" name="stateId" class="form-control1"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.domainId)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.domainId, ViewBag.domainList as SelectList, "Select domain", htmlAttributes: new { @class = "form-control1" })
+                                @Html.ValidationMessageFor(model => model.domainId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.emailId)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.emailId, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.emailId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.ContactPersonName)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.ContactPersonName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ContactPersonName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.contactPersonContactNo1)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.contactPersonContactNo1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.contactPersonContactNo1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.companyCellPhone)</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.companyCellPhone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.companyCellPhone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.city)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.technology)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.technology, htmlAttributes: new { @class = "form-control1" })
+                                @*@Html.DropDownListFor(model => model.technology, ViewBag.UserList as SelectList, "Select User", htmlAttributes: new { @class = "form-control1" })*@
+                                @Html.ValidationMessageFor(model => model.technology, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.isResponded)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(model => model.isResponded, htmlAttributes: new { @checked = Model.isResponded, @class = "checkbox" })
+                                    @Html.ValidationMessageFor(model => model.isResponded, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Html.DisplayNameFor(model => model.isUnsubscribe)<span class="text-danger"> *</span></label>
+                            <div class="col-md-8">
+                                @Html.CheckBoxFor(model => model.isUnsubscribe, htmlAttributes: new { @checked = Model.isUnsubscribe })
+                                @Html.ValidationMessageFor(model => model.isUnsubscribe, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>  
+                  
+                    <div class="form-group">
+                        <label class="control-label col-md-2">@Html.DisplayNameFor(model => model.comment)<span class="text-danger"> *</span></label>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.comment, 12, 10, htmlAttributes: new { @class = "form-control1", placeholder="Remarks" })
+                            @*@Html.DropDownListFor(model => model.technology, ViewBag.UserList as SelectList, "Select User", htmlAttributes: new { @class = "form-control1" })*@
+                            @Html.ValidationMessageFor(model => model.technology, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+
+    $(function () {
+        $('#country').change(function () {
+            $.getJSON('/UserManager/StateList/' + $('#country').val(), function (data) {
+                var items = '<option>Select a State</option>';
+                $.each(data, function (i, state) {
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                });
+                $('#stateId').html(items);
+            });
+        });
+
+    });
+
+</script>

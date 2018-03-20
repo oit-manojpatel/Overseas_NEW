@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Overseas.Manager.DB.domainMaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/AppScript/Domain/Index.js"></script>
+
+<div class="inner_content">
+    <div class="w3l_agileits_breadcrumbs">
+        <div class="w3l_agileits_breadcrumbs_inner">
+            <ul>
+                <li><a href="~/Home/Dashboard"><i class="fa fa-home"></i> Home</a><span>«</span></li>
+                <li><a href="~/Domain/Index"><i class="fa fa-building"></i> Manage Domain</a></li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <div class="well">
+        <h2 class="text-uppercase text-info text-center"><i class="fa fa-building-o"></i>List of Domains</h2>
+    </div>
+    <div>
+        <a href="#" class="btn btn-primary" onclick="Create()">Add Domain</a>
+
+    </div>
+    <div class="panel panel-default panel-table">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col col-xs-6">
+                    <h3 class="panel-title">Domain List</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <table class="table table-bordered table-hovered">
+
+                        <tr class="text-center text-uppercase">
+                            
+                            <th>
+                                @Html.DisplayNameFor(model => model.domainName)
+                            </th>
+                            <th>
+                                <strong>Action</strong>
+                            </th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelitem => item.domainName)</td>
+                                <td>
+                                    <a href="#" onclick="Edit(@item.domainId)" class="fa fa-edit fa-2x"></a>
+                                    <a href="#" onclick="Delete(@item.domainId)" class="fa fa-remove fa-2x"></a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="domainmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Domain</h4>
+            </div>
+            <div class="modal-body" id="adddomain">
+                @Html.Partial("Partial/_adddomain", new Overseas.Manager.DB.domainMaster())
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Editmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Domain</h4>
+            </div>
+            <div class="modal-body" id="Editdomain">
+                @Html.Partial("Partial/_adddomain", new Overseas.Manager.DB.domainMaster())
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    tr.even {
+        background-color: #F5F5F5 !important;
+    }
+</style>

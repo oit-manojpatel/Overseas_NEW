@@ -1,0 +1,198 @@
+﻿@model IEnumerable<Overseas.Manager.DB.clientMaster>
+@using Overseas.Manager.Enum
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/AppScript/ClientManager/Index.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" data-semver="3.1.1" data-require="bootstrap"></script>
+<script src="http://bootboxjs.com/bootbox.js"></script>
+
+
+<div class="inner_content">
+    <div class="wthree-typo agile_info_shadow">
+        <div class="grid_3 grid_4 w3layouts">
+            <div class="w3l_agileits_breadcrumbs">
+                <div class="w3l_agileits_breadcrumbs_inner">
+                    <ul>
+                        <li><a href="~/Home/Dashboard"><i class="fa fa-home"></i>Home</a><span>«</span></li>
+                        <li><a href="~/ClientManager/Index"><i class="fa fa-user-secret"></i>Manage Client</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div>
+                <h2 class="text-info text-center text-uppercase"><i class="fa fa-user-secret"></i>&nbsp; List of Clients</h2>
+            </div>
+            <br />
+            <div class="wthree-typo agile_info_shadow">
+                <div class="grid_3 grid_4 w3layouts">
+                    <div class="well row">
+                        <div class="col-md-2">
+                            <a href="#" onclick="Save()" class="btn btn-primary .bd-example-modal-lg">Add New Client &nbsp;&nbsp;<i class="fa fa-plus-square"></i></a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control icon text-capitalize text-justify" id="myInput" placeholder="Search..." />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Import CSV   <span class="fa fa-upload"></span></a>
+                            <a href="" class="btn btn-system">Export CSV   <span class="fa fa-download"></span></a>
+                        </div>
+                    </div>
+
+                    <div id="list">
+                        <table class="table">
+                            <tr style="align-items:stretch;vertical-align:middle">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emailId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.companyName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ContactPersonName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.contactPersonContactNo1)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.city)
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tbody id="myTable">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <text>@Enum.GetName(typeof(status), Convert.ToInt32(item.status))</text>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.emailId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.companyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ContactPersonName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.contactPersonContactNo1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.city)
+                                        </td>
+                                        <td>
+                                            <a href="#" onclick="Edit(@item.clientId)" class="fa fa-edit fa-2x"></a>
+                                            <a href="#" onclick="Delete(@item.clientId)" class="fa fa-remove fa-2x"></a>
+                                            <a href="#" class="fa fa-eye fa-2x" onclick="Details(@item.clientId)"></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e53238; color: white">
+                <h4 class="modal-title" id="exampleModalLabel">Add New Client</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="clientadd">
+                @Html.Partial("Partial/_AddClient", new Overseas.Manager.DB.clientMaster())
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e53238; color: white">
+                <h4 class="modal-title" id="exampleModalLabel">Edit Client</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="clientEdit">
+                @Html.Partial("Partial/_AddClient", new Overseas.Manager.DB.clientMaster())
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e53238; color: white">
+                <h5 class="modal-title" id="exampleModalLabel">Details Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="clientDetails">
+                @Html.Partial("Partial/_DetailsClient", new Overseas.Manager.DB.clientMaster())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        @using (Html.BeginForm("ImportClient", "ClientManager", new { enctype = "multipart/form-data" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e53238; color: white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Import Client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="container-fluid">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">Choose file</div>
+                                <div class="panel-body">
+                                    <p class="well">
+                                        Import client using Excel file like <mark><b>.xls</b></mark> or <mark><b>.xlsx</b></mark>
+                                    </p>
+                                    <div class="">
+                                        <input type="file" class="" name="excelfile" id="excelfile" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

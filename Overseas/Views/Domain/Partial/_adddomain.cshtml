@@ -1,0 +1,25 @@
+﻿@model Overseas.Manager.DB.domainMaster
+
+<div class="container-fluid">
+    <div class="form-body">
+        @using (Html.BeginForm("domainadd", "Domain", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(model => model.domainId)
+            <div class="form-group">
+                <label for="focusedinput" class="col-sm-2 control-label">
+                    @Html.LabelFor(model => model.domainName)
+                </label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.domainName, string.Empty, htmlAttributes: new { @class = "form-control1", id = "focusedinput", placeholder = "Enter Domain Name" })
+                </div>  
+                <div class="col-sm-2">
+                    @Html.ValidationMessageFor(model => model.domainName, string.Empty, htmlAttributes: new { @class = "alert-danger" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" value="Save" class="btn btn-danger" />
+            </div>
+        }
+    </div>
+</div>
